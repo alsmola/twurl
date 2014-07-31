@@ -89,6 +89,7 @@ Supported Commands: #{SUPPORTED_COMMANDS.sort.join(', ')}
             file
             filefield
             base64
+            guest
           end
         end
 
@@ -328,6 +329,12 @@ Supported Commands: #{SUPPORTED_COMMANDS.sort.join(', ')}
       def base64
         on('-b', '--base64', 'Encode the uploaded file as base64 (default: false)') do |base64|
           options.upload['base64'] = base64
+        end
+      end
+
+      def guest
+        on('-g', '--guest', 'Use guest auth (must be athorized as application-only first') do |guest|
+          options.guest = true
         end
       end
     end

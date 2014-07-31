@@ -67,7 +67,7 @@ module Twurl
       end
     end
 
-    OAUTH_CLIENT_OPTIONS = %w[username consumer_key consumer_secret token secret]
+    OAUTH_CLIENT_OPTIONS = %w[username consumer_key consumer_secret token secret guest_token]
     attr_reader *OAUTH_CLIENT_OPTIONS
     attr_reader :username, :password
     def initialize(options = {})
@@ -133,6 +133,9 @@ module Twurl
     end
 
     def perform_request_from_options(options, &block)
+      if options.guest
+        raise Exception, 'You must be athorized as app-only to use guest auth'
+      end
       request = build_request_from_options(options)
       request.oauth!(consumer.http, consumer, access_token)
       consumer.http.request(request, &block)

@@ -74,6 +74,11 @@ the -X (or --request-method) option.
 
   % twurl -X POST /1.1/statuses/destroy/1234567890.json
 
+You may also make requests as a Guest user. For that you need to use application-only
+(authorize --app-only). Only certain endpoints and apps support Guest authentication.
+
+  % twurl --guest /1.1/statuses/user_timeline.json?screen_name=twitterapi
+
 +------------------+
 | Creating aliases |
 +------------------+

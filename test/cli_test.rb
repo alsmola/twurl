@@ -245,6 +245,18 @@ class Twurl::CLI::OptionParsingTest < Minitest::Test
       options = Twurl::CLI.parse_options([TEST_PATH, '--app-only'])
       assert_equal true, options.app_only
     end
+
+    def test_not_specifying_guest_auth
+      options = Twurl::CLI.parse_options([TEST_PATH])
+      assert_equal nil, options.guest
+    end
+
+    def test_specifying_guest_auth
+      ['-g', '--guest'].each do |guest|
+        options = Twurl::CLI.parse_options([TEST_PATH, guest])
+        assert_equal true, options.guest
+      end
+    end
   end
   include AppOnlyOptionTests
 end
