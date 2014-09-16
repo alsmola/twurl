@@ -134,7 +134,7 @@ module Twurl
 
     def perform_request_from_options(options, &block)
       if options.guest
-        raise Exception, 'You must be athorized as app-only to use guest auth'
+        raise Exception, 'You must be authorized as app-only to use guest auth'
       end
       request = build_request_from_options(options)
       request.oauth!(consumer.http, consumer, access_token)
